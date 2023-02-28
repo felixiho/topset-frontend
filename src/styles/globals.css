@@ -16,3 +16,18 @@
   margin-right: -50%;
   transform: translate(-50%, -50%);
 }
+
+.modal-details-center{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  border: 1px solid rgb(204, 204, 204);
+  background: rgb(255, 255, 255);
+  overflow: scroll;
+  border-radius: 24px;
+  outline: none;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}

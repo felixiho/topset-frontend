@@ -104,12 +104,10 @@ const AddMovie = ({
         }
         try {
             addMovieToCatalogue(data)
-                .then(movies => {
-                    console.log(movies)
+                .then(movies => { 
                     setLoading(false)
                     setDisabled(false)
-                    closeModal()
-                    return
+                    closeModal() 
 
                 })
         } catch (error) {
@@ -126,7 +124,7 @@ const AddMovie = ({
             closeTimeoutMS={100}
             isOpen={isOpen}
             onRequestClose={closeModal}
-            className=" w-11/12 md:w-7/12 lg:w-6/12 xl:w-4/12 modal-categories-center "
+            className=" w-11/12 md:w-7/12 lg:w-6/12 xl:w-6/12 modal-categories-center "
             contentLabel="Add movie to catalogue moddal"
         >
             <div className="w-full flex pt-1 pb-4 px-6 flex-wrap">

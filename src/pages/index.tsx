@@ -19,8 +19,11 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="p-8 max-w-screen-xl 2xl:max-w-screen-2xl w-full m-auto" id="main">
+      <main className=" bg-slate-50" id="main">
+        <div className='p-8 max-w-screen-xl 2xl:max-w-screen-2xl w-full m-auto '>
+
         <Index />
+        </div>
       </main>
     </>
   )

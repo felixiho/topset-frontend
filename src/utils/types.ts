@@ -1,0 +1,1 @@
+export type AnyDict = { [k: string]: any };

@@ -14,6 +14,19 @@ export async function fetchMovies(page:number): Promise<Movie[]| []> {
 }
 
 
+export async function fetchMoviesByGenres(genre:string): Promise<Movie[]| []> {
+
+    const resp = await apiFetchJson<Movie[]>(
+      `/api/movies/genre?genres=${genre}`
+    );
+    if (!resp.isError) {
+      return resp.result;
+    }
+  
+    return [];
+}
+
+
 export async function addMovieToCatalogue(body: any): Promise<Movie[]| []> {
     const resp = await apiFetchJson<Movie[]>(
       "/api/movie", {

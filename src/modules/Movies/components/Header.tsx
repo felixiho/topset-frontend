@@ -3,14 +3,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import TopsetLogo from "../assets/topset-logo.png"
-import { Genre } from "../types";
+import { Genre, Movie } from "../types";
 import AddMovie from "./AddMovie";
 
 export type HeaderProps = {
     genres: Genre[]
+    setMovies: (movie: Movie[]) => void
 }
 export default function Header({
-    genres
+    genres,
+    setMovies
 }: HeaderProps) {
 
     const [addMovieModalOpen, setAddMovieModal] = useState(false)
@@ -24,6 +26,7 @@ export default function Header({
                 isOpen={addMovieModalOpen}
                 closeModal={() => setAddMovieModal(false)}
                 genres={genres}
+                setMovies={setMovies}
             />
 
         </header>

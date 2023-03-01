@@ -1,29 +1,25 @@
 
-/* eslint-disable react/prop-types */
-
 import Button from "@/components/Button";
 import Input from "@/components/Input";
 import SelectInput from "@/components/SelectInput";
-import { Formik, Field } from "formik";
-import Image from "next/image";
-import Link from "next/link";
-import { useEffect, useState, ChangeEvent, SyntheticEvent } from "react";
+import {  useState, ChangeEvent } from "react";
 import Modal from "react-modal";
-import { addMovieToCatalogue } from "../api/movies";
-import TopsetLogo from "../assets/topset-logo.png"
-import { Genre } from "../types";
+import { addMovieToCatalogue } from "../api/movies"; 
+import { Genre, Movie } from "../types";
 
 export type AddMovieProps = {
     isOpen: boolean;
     closeModal: () => void;
     genres: Genre[]
+    setMovies: (movie: Movie[]) => void
 }
 
 
 const AddMovie = ({
     isOpen,
     closeModal,
-    genres
+    genres,
+    setMovies
 }: AddMovieProps) => {
     let initialError = {
         title: "",
@@ -32,15 +28,16 @@ const AddMovie = ({
         genre: "",
         description: ""
     }
-    const [error, setError] = useState<any>(initialError)
-
-    const [values, setValues] = useState<any>({
+    let initialValues = {
         title: "",
         coverImage: "",
         rating: "",
         genre: {},
         description: ""
-    })
+    }
+    const [error, setError] = useState<any>(initialError)
+
+    const [values, setValues] = useState<any>(initialValues)
 
     const [loading, setLoading] = useState(false)
     const [disabled, setDisabled] = useState(false)
@@ -105,8 +102,10 @@ const AddMovie = ({
         try {
             addMovieToCatalogue(data)
                 .then(movies => { 
+                    setMovies(movies)
                     setLoading(false)
                     setDisabled(false)
+                    setValues((prev:any) => ({ ...prev, ...initialValues })) //reset errors 
                     closeModal() 
 
                 })
@@ -137,7 +136,7 @@ const AddMovie = ({
                         Add Movie to Catalogue
                     </h2>
 
-                    <div className="w-1/2 px-2" >
+                    <div className="md:w-1/2  w-full px-2 my-4 md:my-0" >
                         <Input
                             label="Movie Title"
                             value={values.title}
@@ -150,7 +149,7 @@ const AddMovie = ({
                             }))}
                         />
                     </div>
-                    <div className="w-1/2 px-2">
+                    <div className="md:w-1/2  w-full px-2 my-4 md:my-0">
                         <Input
                             label="Cover Image Url"
                             value={values.coverImage}
@@ -163,7 +162,7 @@ const AddMovie = ({
                             }))}
                         />
                     </div>
-                    <div className="w-1/2 px-2 my-4">
+                    <div className="md:w-1/2  w-full px-2 my-4">
                         <SelectInput
                             options={genres}
                             label="Genre"
@@ -176,7 +175,7 @@ const AddMovie = ({
                             selected={values.genre}
                         />
                     </div>
-                    <div className="w-1/2 px-2 my-4">
+                    <div className="md:w-1/2 w-full px-2 my-4">
                         <SelectInput
                             options={[{ id: 1, title: 1 }, { id: 2, title: 2 }, { id: 3, title: 3 }, { id: 4, title: 4 }, { id: 5, title: 5 },]}
                             label="Ratings"
@@ -190,7 +189,7 @@ const AddMovie = ({
                         />
                     </div>
 
-                    <div className="w-full px-2">
+                    <div className="w-full px-2 my-4 md:my-0">
                         <Input
                             label="Description"
                             value={values.description}

@@ -19,12 +19,12 @@ const Genres = ({ genres, filters, setFilters }: GenresProp) => {
     }
 
     return (
-        <section className="my-6">
+        <section className="my-6 w-full flex flex-wrap justify-center">
             {
                 genres.map(genre => 
                     <span 
                         onClick={() => handleClick(genre.id)}
-                        className={`${( filters.includes(genre.id)) ? " bg-topset-100 text-white" : ""} cursor-pointer text-sm mt-2 mx-4 border-topset-100 border rounded-full py-1 px-4`}>
+                        className={`${( filters.includes(genre.id)) ? " bg-topset-100 text-white" : ""} cursor-pointer text-sm mt-4 mx-4 border-topset-100 border rounded-full py-1 px-4`}>
                             {genre.title}
                     </span>
                 )

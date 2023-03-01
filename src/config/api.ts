@@ -18,7 +18,6 @@ export const apiFetch = (
     const headers = opts.headers || {};
     opts.headers = headers;
 
-    console.log(baseUrl.toString()+path)
     return fetch(`${baseUrl}${path}`, opts);
   } catch (error) {
     console.log(error);
